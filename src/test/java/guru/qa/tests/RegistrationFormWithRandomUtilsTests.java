@@ -1,4 +1,4 @@
-package guru.qa;
+package guru.qa.tests;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
@@ -8,8 +8,18 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static guru.qa.utils.RandomUtils.getRandomString;
+import static java.lang.String.format;
 
-public class AutomationPracticeFormTests {
+public class RegistrationFormWithRandomUtilsTests {
+
+    String firstName = getRandomString(7),
+            lastName = getRandomString(10),
+            email = lastName.toLowerCase() + "@gmail.com",
+            mobile = "9265001234",
+            address = "Russia, Khimki";
+
+    String expectedFullName = format("%s %s", firstName, lastName);
 
     @BeforeAll
     static void setUp() {
@@ -21,13 +31,11 @@ public class AutomationPracticeFormTests {
     @Test
     void fillFormTest() {
 
-        String firstName = "Pavel";
-        String lastName = "Pilatov";
-        String email = lastName.toLowerCase() + "@gmail.com";
-        String mobile = "9265001234";
-        String address = "Russia, Khimki";
-
         open("/automation-practice-form");
+//        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+//        executeJavaScript("$('footer').remove()");
+//        executeJavaScript("$('#fixedban'.remove()");
+
         $("#firstName").setValue(firstName);
         $("#lastName").setValue(lastName);
         $("#userEmail").setValue(email);
@@ -46,8 +54,9 @@ public class AutomationPracticeFormTests {
         $("#city").click();
         $("#stateCity-wrapper").$(byText("Delhi")).click();
         $("#submit").click();
+
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-        $(".table-responsive").shouldHave(text("Student Name " + firstName + " " + lastName),
+        $(".table-responsive").shouldHave(text("Student Name " + expectedFullName),
                 text("Mobile " + mobile),
                 text("Picture mypic1.jpg"),
                 text("Student Email " + email),
