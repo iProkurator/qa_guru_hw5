@@ -1,4 +1,4 @@
-package guru.qa.tests.temp;
+package guru.qa.tests;
 
 import com.codeborne.selenide.Configuration;
 import com.github.javafaker.Faker;
