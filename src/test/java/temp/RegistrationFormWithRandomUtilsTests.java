@@ -1,11 +1,8 @@
-package guru.qa.temp;
+package temp;
 
 import com.codeborne.selenide.Configuration;
-import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import java.util.Locale;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -14,15 +11,13 @@ import static com.codeborne.selenide.Selenide.open;
 import static guru.qa.utils.RandomUtils.getRandomString;
 import static java.lang.String.format;
 
-public class RegistrationFormWithFakerTests {
+public class RegistrationFormWithRandomUtilsTests {
 
-    Faker faker = new Faker();
-
-    String firstName = faker.name().firstName(),
-            lastName = faker.name().lastName(),
-            email = faker.internet().emailAddress(),
-            mobile = faker.phoneNumber().subscriberNumber(10),
-            address = faker.address().fullAddress();
+    String firstName = getRandomString(7),
+            lastName = getRandomString(10),
+            email = lastName.toLowerCase() + "@gmail.com",
+            mobile = "9265001234",
+            address = "Russia, Khimki";
 
     String expectedFullName = format("%s %s", firstName, lastName);
 

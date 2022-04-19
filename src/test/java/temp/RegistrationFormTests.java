@@ -1,4 +1,4 @@
-package guru.qa.temp;
+package temp;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;

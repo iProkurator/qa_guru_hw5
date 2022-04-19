@@ -1,4 +1,4 @@
-package guru.qa.temp;
+package temp;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
@@ -8,13 +8,12 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static guru.qa.utils.RandomUtils.getRandomString;
 import static java.lang.String.format;
 
-public class RegistrationFormWithRandomUtilsTests {
+public class RegistrationFormWithTestDataTests {
 
-    String firstName = getRandomString(7),
-            lastName = getRandomString(10),
+    String firstName = "Pavel",
+            lastName = "Pilatov",
             email = lastName.toLowerCase() + "@gmail.com",
             mobile = "9265001234",
             address = "Russia, Khimki";
