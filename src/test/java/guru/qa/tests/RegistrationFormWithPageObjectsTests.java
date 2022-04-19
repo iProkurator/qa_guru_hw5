@@ -47,7 +47,7 @@ public class RegistrationFormWithPageObjectsTests {
                 .setAddress(address)
                 .setCityAndState("NCR", "Delhi")
 
-                .submit()
+                .submitForm()
 
                 .checkResultHeader("Thanks for submitting the form")
 

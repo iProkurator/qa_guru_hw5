@@ -1,4 +1,4 @@
-package guru.qa.tests;
+package temp;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
@@ -6,19 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
-import static java.lang.String.format;
+import static com.codeborne.selenide.Selenide.*;
 
-public class RegistrationFormWithTestDataTests {
-
-    String firstName = "Pavel",
-            lastName = "Pilatov",
-            email = lastName.toLowerCase() + "@gmail.com",
-            mobile = "9265001234",
-            address = "Russia, Khimki";
-
-    String expectedFullName = format("%s %s", firstName, lastName);
+public class RegistrationFormTests {
 
     @BeforeAll
     static void setUp() {
@@ -29,6 +19,12 @@ public class RegistrationFormWithTestDataTests {
 
     @Test
     void fillFormTest() {
+
+        String firstName = "Pavel";
+        String lastName = "Pilatov";
+        String email = lastName.toLowerCase() + "@gmail.com";
+        String mobile = "9265001234";
+        String address = "Russia, Khimki";
 
         open("/automation-practice-form");
 //        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
@@ -55,7 +51,7 @@ public class RegistrationFormWithTestDataTests {
         $("#submit").click();
 
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-        $(".table-responsive").shouldHave(text("Student Name " + expectedFullName),
+        $(".table-responsive").shouldHave(text("Student Name " + firstName + " " + lastName),
                 text("Mobile " + mobile),
                 text("Picture mypic1.jpg"),
                 text("Student Email " + email),

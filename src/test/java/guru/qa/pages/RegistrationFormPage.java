@@ -22,7 +22,7 @@ public class RegistrationFormPage extends CalendarComponent {
         return this;
     }
 
-    public RegistrationFormPage submit() {
+    public RegistrationFormPage submitForm() {
         $("#submit").click();
         return this;
     }
