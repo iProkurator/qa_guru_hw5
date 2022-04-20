@@ -37,7 +37,7 @@ public class RegistrationFormWithPageObjectsTests {
             expectedFullName = format("%s %s", firstName, lastName),
             expectedBirthDay = dateFormat.format(birthDate),
             expectedStateAndCity = state + " " + city,
-            expectedResultHeader = "Thanks for submitting the form1";
+            expectedResultHeader = "Thanks for submitting the form";
 
     @BeforeAll
     static void setUp() {
