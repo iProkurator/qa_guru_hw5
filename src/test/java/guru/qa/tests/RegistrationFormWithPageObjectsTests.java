@@ -36,7 +36,8 @@ public class RegistrationFormWithPageObjectsTests {
 
             expectedFullName = format("%s %s", firstName, lastName),
             expectedBirthDay = dateFormat.format(birthDate),
-            expectedStateAndCity = state + " " + city;
+            expectedStateAndCity = state + " " + city,
+            expectedResultHeader = "Thanks for submitting the form";
 
     @BeforeAll
     static void setUp() {
@@ -64,7 +65,7 @@ public class RegistrationFormWithPageObjectsTests {
 
                 .submitForm()
 
-                .checkResultHeader("Thanks for submitting the form")
+                .checkResultHeader(expectedResultHeader)
 
                 .checkResult("Student Name", expectedFullName)
                 .checkResult("Gender", gender)
