@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -25,7 +26,7 @@ public class CalendarComponent {
         cal.setTime(date);
         int day = cal.get(Calendar.DAY_OF_MONTH);
 
-        DateFormat dateFormatMonthOnly = new SimpleDateFormat("MMMM");
+        DateFormat dateFormatMonthOnly = new SimpleDateFormat("MMMM", Locale.ENGLISH);
         String  dayStr = day + suffixes[day],
                 longMonthStr = dateFormatMonthOnly.format(date),
                 yearStr = String.valueOf(cal.get(Calendar.YEAR));
