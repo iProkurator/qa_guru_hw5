@@ -6,6 +6,10 @@ import guru.qa.pages.RegistrationFormPage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static java.lang.String.format;
 
 public class RegistrationFormWithPageObjectsTests {
@@ -14,14 +18,25 @@ public class RegistrationFormWithPageObjectsTests {
 
     Faker faker = new Faker();
 
+    DateFormat dateFormat = new SimpleDateFormat("dd MMMM,yyyy");
+
+    Date birthDate = faker.date().birthday();
+
     String firstName = faker.name().firstName(),
             lastName = faker.name().lastName(),
             gender = faker.demographic().sex(),
             email = faker.internet().emailAddress(),
             mobile = faker.phoneNumber().subscriberNumber(10),
-            address = faker.address().fullAddress();
+            address = faker.address().fullAddress(),
+            subjects = "Computer Science",
+            hobbies = "Sports",
+            pictureName = "mypic1.jpg",
+            state = "NCR",
+            city = "Delhi",
 
-    String expectedFullName = format("%s %s", firstName, lastName);
+            expectedFullName = format("%s %s", firstName, lastName),
+            expectedBirthDay = dateFormat.format(birthDate),
+            expectedStateAndCity = state + " " + city;
 
     @BeforeAll
     static void setUp() {
@@ -40,12 +55,12 @@ public class RegistrationFormWithPageObjectsTests {
                 .setEmail(email)
                 .setGender(gender)
                 .setMobile(mobile)
-                .setBirthDate("02", "May", "1982")
-                .setSubjects("Computer")
-                .setHobbies("Sports")
-                .setUploadPicture("mypic1.jpg")
+                .setBirthDate(birthDate)
+                .setSubjects(subjects)
+                .setHobbies(hobbies)
+                .setUploadPicture(pictureName)
                 .setAddress(address)
-                .setCityAndState("NCR", "Delhi")
+                .setCityAndState(state, city)
 
                 .submitForm()
 
@@ -54,8 +69,13 @@ public class RegistrationFormWithPageObjectsTests {
                 .checkResult("Student Name", expectedFullName)
                 .checkResult("Gender", gender)
                 .checkResult("Mobile", mobile)
+                .checkResult("Date of Birth", expectedBirthDay)
                 .checkResult("Student Email", email)
-                .checkResult("Address", address);
+                .checkResult("Address", address)
+                .checkResult("Subjects", subjects)
+                .checkResult("Hobbies", hobbies)
+                .checkResult("Picture", pictureName)
+                .checkResult("State and City", expectedStateAndCity);
     }
 
 }

@@ -3,12 +3,16 @@ package guru.qa.pages;
 import com.codeborne.selenide.SelenideElement;
 import guru.qa.pages.components.CalendarComponent;
 
+import java.util.Date;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class RegistrationFormPage extends CalendarComponent {
+public class RegistrationFormPage{
+
+    CalendarComponent calendar = new CalendarComponent();
 
     // locators
     SelenideElement firstNameInput = $("#firstName"),
@@ -52,9 +56,9 @@ public class RegistrationFormPage extends CalendarComponent {
         return this;
     }
 
-    public RegistrationFormPage setBirthDate(String day, String month, String year) {
+    public RegistrationFormPage setBirthDate(Date date) {
         $("#dateOfBirthInput").click();
-        this.setDate(day, month, year);
+        calendar.setDate(date);
         return this;
     }
 
