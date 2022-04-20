@@ -33,9 +33,6 @@ public class CalendarComponent {
 
         $(".react-datepicker__month-select").selectOption(longMonthStr);
         $(".react-datepicker__year-select").selectOption(yearStr);
-//        $(".react-datepicker__day--0" + day + ":not(.react-datepicker__day--outside-month)").click();
-//      aria-label="Choose Thursday, April 21st, 2022"
-//        $("[aria-label$='November 30th, 1994']").click();
         $("[aria-label$='" + dateLocator + "']").click();
     }
 }
